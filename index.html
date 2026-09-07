@@ -18,7 +18,22 @@
     <link rel="stylesheet" href="./assets/css/fuiToast.min.css">
     <link rel="stylesheet" href="./assets/css/fancybox.css">
     <link rel="stylesheet" href="./assets/css/index.css">
-<link rel="preload" href="./assets/audio/bgm.mp3" as="audio">
+<!-- audio loads async, not blocking first paint -->
+<style id="force-loader-css">
+body.loading { overflow: hidden; }
+.td-loading-v2 { transition: opacity 0.4s; }
+</style>
+<script>
+// Emergency: never stay on loader more than 2s
+setTimeout(function(){
+  var el = document.querySelector(".td-loading-v2");
+  if (el) { el.style.display = "none"; }
+  var box = document.getElementById("loading-box");
+  if (box) { box.style.display = "none"; }
+  document.body.classList.remove("loading");
+  document.documentElement.classList.remove("loading");
+}, 2000);
+</script>
 </head>
 <body>
     <div class="flex justify-center bg-background">
