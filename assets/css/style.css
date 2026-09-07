@@ -823,3 +823,25 @@ playback timings (ms):
   load_resource: 343.246
   loaddict: 106.311
 */
+/* Lock screen avatar + video bg */
+.td-lock-screen .logo-ws {
+  width: 90px !important;
+  height: 90px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  border: 2px solid rgba(0,255,200,0.5);
+  box-shadow: 0 0 20px rgba(0,255,180,0.35);
+}
+.td-lock-screen .item_video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.td-lock-screen .medias {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}

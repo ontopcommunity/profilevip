@@ -255,5 +255,24 @@
     <script src="./assets/js/cursor-magic.js"></script>
     <script src="./assets/js/libs/pace.min.js" data-pace-options='{"restartOnRequestAfter":false,"eventLag":false}'></script>
     <script src="./assets/js/index.js"></script>
+<audio id="bgm-audio" src="./assets/audio/bgm.mp3" loop preload="auto"></audio>
+<script>
+// Force attempt autoplay as early as possible
+(function(){
+  var a = document.getElementById("bgm-audio");
+  if (!a) return;
+  a.volume = 0.7;
+  var play = function(){ a.play().catch(function(){}); };
+  play();
+  document.addEventListener("DOMContentLoaded", play);
+  window.addEventListener("load", play);
+  ["click","touchstart","keydown"].forEach(function(ev){
+    document.addEventListener(ev, function once(){
+      play();
+      document.removeEventListener(ev, once);
+    });
+  });
+})();
+</script>
 </body>
 </html>
