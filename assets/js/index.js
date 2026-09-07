@@ -1,3 +1,21 @@
+
+// Offline quotes - no network needed
+const OFFLINE_QUOTES = [
+  "Học hỏi mỗi ngày, tiến bộ mỗi giờ.",
+  "Code không chỉ là kỹ thuật, mà còn là nghệ thuật.",
+  "Không có internet vẫn có thể mơ lớn.",
+  "Sinh năm 2009 – đam mê công nghệ không giới hạn.",
+  "Game là sở thích, lập trình là đam mê.",
+  "Hà Tĩnh – nơi bắt đầu những ước mơ.",
+  "Cao Nhật Minh – luôn tiến về phía trước.",
+  "Mỗi bug là một bài học.",
+  "Stay curious, keep building.",
+  "Tương lai thuộc về người dám bắt đầu."
+];
+function pickQuote() {
+  return OFFLINE_QUOTES[Math.floor(Math.random() * OFFLINE_QUOTES.length)];
+}
+
 var _____WB$wombat$assign$function_____=function(name){return (globalThis._wb_wombat && globalThis._wb_wombat.local_init && globalThis._wb_wombat.local_init(name))||globalThis[name];};if(!globalThis.__WB_pmw){globalThis.__WB_pmw=function(obj){this.__WB_source=obj;return this;}}{
 let window = _____WB$wombat$assign$function_____("window");
 let self = _____WB$wombat$assign$function_____("self");
@@ -31,3 +49,13 @@ playback timings (ms):
   load_resource: 237.674
   loaddict: 79.528
 */
+// Set offline quote on load
+document.addEventListener("DOMContentLoaded", function() {
+  var q = document.getElementById("quote-text");
+  if (q) q.textContent = pickQuote();
+  // Also try common loader selectors
+  var w = document.getElementById("waiting-loader");
+  if (w && !document.getElementById("quote-text")) {
+    w.innerHTML = '<i class="ri-loader-4-line icon-spin"></i>&ensp;' + pickQuote();
+  }
+});
