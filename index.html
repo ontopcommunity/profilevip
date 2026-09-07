@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="./assets/css/fuiToast.min.css">
     <link rel="stylesheet" href="./assets/css/fancybox.css">
     <link rel="stylesheet" href="./assets/css/index.css">
+<link rel="preload" href="./assets/audio/bgm.mp3" as="audio">
 </head>
 <body>
     <div class="flex justify-center bg-background">
@@ -242,12 +243,7 @@
                 </div>
                 <div id="real-time">00:00:00</div>
             </footer>
-             <div id="toast-prompt"> <img src="./assets/img/gif2.gif" width="32" height="32">
-            Bạn có muốn cho phép vừa nghe nhạc vừa lướt trang web không ?
-            <button class="close-btn">Không hẹn lại lần sau</button>
-            <button class="confirm-btn">Cho phép luôn</button> 
-        </div>
-        </main>
+             </main>
     </div>
     <script src="./assets/js/libs/jquery-3.7.1.min.js"></script>
     <script src="./assets/js/libs/fuiToast.min.js"></script>
@@ -255,23 +251,32 @@
     <script src="./assets/js/cursor-magic.js"></script>
     <script src="./assets/js/libs/pace.min.js" data-pace-options='{"restartOnRequestAfter":false,"eventLag":false}'></script>
     <script src="./assets/js/index.js"></script>
-<audio id="bgm-audio" src="./assets/audio/bgm.mp3" loop preload="auto"></audio>
+<audio id="bgm-audio" src="./assets/audio/bgm.mp3" loop preload="auto" autoplay playsinline></audio>
 <script>
-// Force attempt autoplay as early as possible
+// BGM autoplay from first paint / intro lock screen - no popup
 (function(){
   var a = document.getElementById("bgm-audio");
   if (!a) return;
-  a.volume = 0.7;
-  var play = function(){ a.play().catch(function(){}); };
+  a.volume = 0.75;
+  a.loop = true;
+  var unlocked = false;
+  function play(){
+    var p = a.play();
+    if (p && p.then) {
+      p.then(function(){ unlocked = true; }).catch(function(){});
+    }
+  }
   play();
   document.addEventListener("DOMContentLoaded", play);
   window.addEventListener("load", play);
-  ["click","touchstart","keydown"].forEach(function(ev){
-    document.addEventListener(ev, function once(){
-      play();
-      document.removeEventListener(ev, once);
-    });
+  // Any interaction unlocks (browsers require gesture if policy blocks)
+  ["click","touchstart","touchend","keydown","pointerdown"].forEach(function(ev){
+    document.addEventListener(ev, function(){ play(); }, { passive: true });
   });
+  // When lock screen is clicked to enter profile, ensure playing
+  document.addEventListener("click", function(e){
+    if (e.target && (e.target.closest && e.target.closest(".td-lock-screen"))) play();
+  }, true);
 })();
 </script>
 </body>
