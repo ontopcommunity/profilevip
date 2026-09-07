@@ -845,3 +845,11 @@ playback timings (ms):
   inset: 0;
   overflow: hidden;
 }
+
+/* Hide stuck pace / loading residue */
+.pace, .pace-active, #loading-percentage, #loading-box {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+body.loading { overflow: auto !important; }
