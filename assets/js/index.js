@@ -26,6 +26,37 @@ let parent = _____WB$wombat$assign$function_____("parent");
 let frames = _____WB$wombat$assign$function_____("frames");
 let opener = _____WB$wombat$assign$function_____("opener");
 !function(n){function t(n,t,e){let i=new Date(Date.now()+864e5*e).toUTCString();document.cookie=`${n}=${t}; expires=${i}; path=/`}function e(n){let t=document.cookie.split("; ").reduce((n,t)=>{let[e,i]=t.split("=");return n[e]=i,n},{});return t[n]}function i(n){let e=$(".ri-sun-line"),i=$(".ri-moon-clear-line");"light"===n?($("html").removeClass("dark").addClass("light"),i.slideUp(300,function(){e.slideDown(300)}),t("theme","light",365)):($("html").removeClass("light").addClass("dark"),e.slideUp(300,function(){i.slideDown(300)}),t("theme","dark",365))}let h=e("theme");function c(){let n=Math.floor(100*Math.random()),t=Math.floor(100*Math.random()),e=["+","-","*","/"],i=e[Math.floor(Math.random()*e.length)],h;switch(i){case"+":h=n+t;break;case"-":h=n-t;break;case"*":h=n*t;break;case"/":h=0!==t?(n/t).toFixed(2):n}let c=h<10?"0"+h:h;return`${n<10?"0"+n:n}.${t<10?"0"+t:t}.${c}`}"light"===h?i("light"):i("dark"),$("body").on("click",".change-theme",function(){let n=$("html").hasClass("dark");i(n?"light":"dark")}),$("#toast-prompt").remove();$("body").on("click",".close-btn",function(){$("#toast-prompt").remove()});$("body").on("click",".confirm-btn",function(){$("#toast-prompt").remove();var a=document.getElementById("bgm-audio");if(a)a.play().catch(function(){});});let o=0;$("#toast-prompt").remove();/* toast-prompt permanently disabled */$("body").append(`<div id="fui-toast"></div><div class="td-lock-screen"><section class="td-welcome"><div class="medias"><video class="pc item_video" autoplay loop muted playsinline preload="auto" poster=""><source src="./assets/video/pc.mp4" type="video/mp4"></video><video class="mobile item_video" autoplay loop muted playsinline preload="metadata"><source src="./assets/video/mb.mp4" type="video/mp4"></video><div class="date"></div></div><div class="infos"><div class="logo-web-title"><img class="logo-ws" src="./assets/img/avatar.png" alt="Cao Nhật Minh"><span class="web-title">${$("html").attr("data-title-loader")||"M\xe0n H\xecnh Kho\xe1"}</span></div><span class="web_desc"></span><div><i class="ri-arrow-down-line close-lockscreen"></i></div></div></section></div>`);
+
+// Smooth intro video playback
+(function(){
+  function tuneVideos(){
+    document.querySelectorAll(".td-lock-screen video.item_video").forEach(function(v){
+      try {
+        v.muted = true;
+        v.defaultMuted = true;
+        v.setAttribute("muted", "");
+        v.playsInline = true;
+        v.setAttribute("playsinline", "");
+        v.loop = true;
+        v.preload = "auto";
+        // Prefer only one visible video to reduce decode jank
+        var isMobile = window.matchMedia("(max-width: 768px)").matches;
+        if (v.classList.contains("pc")) {
+          v.style.display = isMobile ? "none" : "block";
+        }
+        if (v.classList.contains("mobile")) {
+          v.style.display = isMobile ? "block" : "none";
+        }
+        var p = v.play();
+        if (p && p.catch) p.catch(function(){});
+      } catch(e) {}
+    });
+  }
+  setTimeout(tuneVideos, 100);
+  setTimeout(tuneVideos, 500);
+  setTimeout(tuneVideos, 1500);
+})();
+
 // Autoplay BGM - no prompt
 (function(){
   var audio = document.getElementById("bgm-audio");

@@ -823,14 +823,12 @@ playback timings (ms):
   load_resource: 343.246
   loaddict: 106.311
 */
-/* Lock screen avatar + video bg */
-.td-lock-screen .logo-ws {
-  width: 90px !important;
-  height: 90px !important;
-  border-radius: 50% !important;
-  object-fit: cover !important;
-  border: 2px solid rgba(0,255,200,0.5);
-  box-shadow: 0 0 20px rgba(0,255,180,0.35);
+/* Lock screen avatar + video bg — smooth */
+.td-lock-screen .medias {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
 }
 .td-lock-screen .item_video {
   position: absolute;
@@ -839,11 +837,68 @@ playback timings (ms):
   height: 100%;
   object-fit: cover;
   z-index: 0;
+  /* GPU layer for smoother playback */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
 }
-.td-lock-screen .medias {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
+.td-lock-screen .infos {
+  position: relative;
+  z-index: 2;
+}
+.td-lock-screen .logo-web-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+/* Animated avatar on intro */
+.td-lock-screen .infos .logo-ws,
+.td-lock-screen .logo-ws {
+  width: 110px !important;
+  height: 110px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  border: 3px solid rgba(255,255,255,0.85) !important;
+  box-shadow:
+    0 0 0 3px rgba(0,255,200,0.35),
+    0 0 25px rgba(0,255,180,0.45),
+    0 8px 30px rgba(0,0,0,0.35) !important;
+  background: transparent !important;
+  animation: avatarFloat 3.2s ease-in-out infinite, avatarGlow 2.4s ease-in-out infinite;
+  will-change: transform, box-shadow;
+}
+@keyframes avatarFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.03); }
+}
+@keyframes avatarGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 0 3px rgba(0,255,200,0.3),
+      0 0 20px rgba(0,255,180,0.35),
+      0 8px 30px rgba(0,0,0,0.35);
+  }
+  50% {
+    box-shadow:
+      0 0 0 5px rgba(120,180,255,0.45),
+      0 0 35px rgba(0,255,220,0.55),
+      0 8px 30px rgba(0,0,0,0.35);
+  }
+}
+/* Soft bounce on the down arrow */
+.td-lock-screen .ri-arrow-down-line {
+  animation: arrowBounce 1.5s ease-in-out infinite;
+  display: inline-block;
+}
+@keyframes arrowBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+/* Profile page avatar gentle motion */
+.author-avatar {
+  animation: avatarFloat 4s ease-in-out infinite;
 }
 
 /* Hide stuck pace / loading residue */
