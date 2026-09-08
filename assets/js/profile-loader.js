@@ -2,11 +2,11 @@
   function qs(s, r){ return (r||document).querySelector(s); }
   function qsa(s, r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
   var ICON = {
-    facebook: "./assets/img/social/facebook.svg",
-    tiktok: "./assets/img/social/tiktok.svg",
-    locket: "./assets/img/social/locket.svg",
-    instagram: "./assets/img/social/instagram.svg",
-    threads: "./assets/img/social/threads.svg"
+    facebook: "./assets/img/social/facebook.png",
+    tiktok: "./assets/img/social/tiktok.png",
+    locket: "./assets/img/social/locket.png",
+    instagram: "./assets/img/social/instagram.png",
+    threads: "./assets/img/social/threads.png"
   };
   fetch("./assets/data/profile.json?t=" + Date.now()).then(function(r){ return r.ok ? r.json() : null; }).then(function(p){
     if (!p) return;

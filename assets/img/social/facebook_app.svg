@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs><clipPath id="c"><rect width="128" height="128" rx="28"/></clipPath></defs>
+  <rect width="128" height="128" rx="28" fill="#1877F2"/>
+  <path fill="#fff" d="M86 66.5h-12.5v40H58.5v-40H48V52.5h10.5v-7.5c0-11.5 6.5-18 17.5-18 5 0 9.5.5 9.5.5v12h-6c-5.5 0-7 2.5-7 6.5v6.5H86L86 66.5z"/>
+</svg>
