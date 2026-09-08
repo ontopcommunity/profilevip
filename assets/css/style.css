@@ -912,14 +912,16 @@ body.loading { overflow: auto !important; }
 }
 
 
-/* crown size match original thanhdieu — centered */
-.animate > .relative {
+
+/* crown size — match visual of original thanhdieu profile */
+.animate.flex.flex-col.items-center > .relative,
+section.animate > .relative {
     position: relative !important;
-    width: 153px;
-    height: 153px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 153px !important;
+    height: 153px !important;
+    display: block !important;
+    overflow: visible !important;
+    margin: 0 auto;
 }
 .author-avatar {
     width: 153px !important;
@@ -928,22 +930,23 @@ body.loading { overflow: auto !important; }
     animation: none !important;
     position: relative;
     z-index: 1;
-    border-radius: 9999px;
+    display: block;
+    border-radius: 9999px !important;
     box-sizing: border-box;
+    /* thinner ring like original */
+    border-width: 2px !important;
+    padding: 2px !important;
 }
-.crown,
-.crown2,
+img.crown3,
 .crown3 {
     position: absolute !important;
     left: 50% !important;
     top: 50% !important;
-    width: 200% !important;   /* frame art is larger than face hole */
+    width: 230px !important;   /* ~1.5x of 153px — original 130% * 1.15 scale */
     height: auto !important;
     max-width: none !important;
     transform: translate(-50%, -50%) !important;
     pointer-events: none !important;
-    z-index: 2 !important;
-}
-.crown3 {
-    /* APNG self-animates */
+    z-index: 3 !important;
+    margin: 0 !important;
 }
