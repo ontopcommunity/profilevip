@@ -942,7 +942,7 @@ img.crown3,
     position: absolute !important;
     left: 50% !important;
     top: 50% !important;
-    width: 230px !important;   /* ~1.5x of 153px — original 130% * 1.15 scale */
+    width: 300px !important;   /* tuned to match archive visual — face hole fits 153px avatar */
     height: auto !important;
     max-width: none !important;
     transform: translate(-50%, -50%) !important;
