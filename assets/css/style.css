@@ -920,5 +920,10 @@ img.crown3 {
   transform: translate(-50%, -50%) scale(1.05);
   pointer-events: none;
   z-index: 5;
-  animation: none;
+  /* APNG tự chạy frame — không ghi đè animation CSS */
+  image-rendering: auto;
+}
+.author-avatar {
+  animation: none !important;
+  transform: none !important;
 }
