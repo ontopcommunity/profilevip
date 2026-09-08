@@ -911,25 +911,39 @@ body.loading { overflow: auto !important; }
   transform: none !important;
 }
 
-/* crown size match original thanhdieu */
-.crown,
-.crown2,
-.crown3 {
-    position: absolute !important;
-    left: 0 !important;
-    width: 130% !important;
-    height: auto !important;
-    max-width: none !important;
-}
-.crown3 {
-    top: 0 !important;
-    transform: scale(1.15) !important;
-    pointer-events: none;
-    z-index: 5;
+
+/* crown size match original thanhdieu — centered */
+.animate > .relative {
+    position: relative !important;
+    width: 153px;
+    height: 153px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .author-avatar {
     width: 153px !important;
     height: 153px !important;
     object-fit: cover !important;
     animation: none !important;
+    position: relative;
+    z-index: 1;
+    border-radius: 9999px;
+    box-sizing: border-box;
+}
+.crown,
+.crown2,
+.crown3 {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    width: 200% !important;   /* frame art is larger than face hole */
+    height: auto !important;
+    max-width: none !important;
+    transform: translate(-50%, -50%) !important;
+    pointer-events: none !important;
+    z-index: 2 !important;
+}
+.crown3 {
+    /* APNG self-animates */
 }
