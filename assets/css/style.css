@@ -905,25 +905,31 @@ playback timings (ms):
 }
 body.loading { overflow: auto !important; }
 
-/* crown3 animated frame (GIF) */
-.relative:has(.author-avatar),
-.relative:has(.crown3) {
-  position: relative;
-}
-img.crown3 {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 145% !important;
-  max-width: none;
-  height: auto;
-  transform: translate(-50%, -50%) scale(1.05);
-  pointer-events: none;
-  z-index: 5;
-  /* APNG tự chạy frame — không ghi đè animation CSS */
-  image-rendering: auto;
-}
+
 .author-avatar {
   animation: none !important;
   transform: none !important;
+}
+
+/* crown size match original thanhdieu */
+.crown,
+.crown2,
+.crown3 {
+    position: absolute !important;
+    left: 0 !important;
+    width: 130% !important;
+    height: auto !important;
+    max-width: none !important;
+}
+.crown3 {
+    top: 0 !important;
+    transform: scale(1.15) !important;
+    pointer-events: none;
+    z-index: 5;
+}
+.author-avatar {
+    width: 153px !important;
+    height: 153px !important;
+    object-fit: cover !important;
+    animation: none !important;
 }
