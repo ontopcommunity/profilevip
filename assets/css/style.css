@@ -913,40 +913,46 @@ body.loading { overflow: auto !important; }
 
 
 
-/* crown size — match visual of original thanhdieu profile */
-.animate.flex.flex-col.items-center > .relative,
-section.animate > .relative {
-    position: relative !important;
-    width: 153px !important;
-    height: 153px !important;
-    display: block !important;
-    overflow: visible !important;
-    margin: 0 auto;
+
+/* FINAL crown — centered, size matched to original visual */
+section.animate > div.relative {
+  position: relative !important;
+  width: 153px !important;
+  height: 153px !important;
+  overflow: visible !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
-.author-avatar {
-    width: 153px !important;
-    height: 153px !important;
-    object-fit: cover !important;
-    animation: none !important;
-    position: relative;
-    z-index: 1;
-    display: block;
-    border-radius: 9999px !important;
-    box-sizing: border-box;
-    /* thinner ring like original */
-    border-width: 2px !important;
-    padding: 2px !important;
+section.animate > div.relative > img.author-avatar {
+  width: 153px !important;
+  height: 153px !important;
+  object-fit: cover !important;
+  animation: none !important;
+  position: relative !important;
+  z-index: 1 !important;
+  display: block !important;
+  border-radius: 9999px !important;
+  box-sizing: border-box !important;
+  padding: 3px !important;
 }
-img.crown3,
-.crown3 {
-    position: absolute !important;
-    left: 50% !important;
-    top: 50% !important;
-    width: 300px !important;   /* tuned to match archive visual — face hole fits 153px avatar */
-    height: auto !important;
-    max-width: none !important;
-    transform: translate(-50%, -50%) !important;
-    pointer-events: none !important;
-    z-index: 3 !important;
-    margin: 0 !important;
+section.animate > div.relative > img.crown3 {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  width: 280px !important;
+  height: 280px !important;
+  max-width: none !important;
+  object-fit: contain !important;
+  transform: translate(-50%, -50%) !important;
+  pointer-events: none !important;
+  z-index: 5 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+@media (max-width: 480px) {
+  section.animate > div.relative > img.crown3 {
+    width: 260px !important;
+    height: 260px !important;
+  }
 }
