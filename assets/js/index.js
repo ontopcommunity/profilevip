@@ -186,3 +186,29 @@ document.addEventListener("DOMContentLoaded", function() {
   setTimeout(hideResiduals, 500);
   setTimeout(hideResiduals, 2000);
 })();
+
+// cham-ngon rotator (footer quotes)
+(function(){
+  var quotes = (typeof OFFLINE_QUOTES !== "undefined" && OFFLINE_QUOTES.length) ? OFFLINE_QUOTES : [
+    "Học hỏi mỗi ngày, tiến bộ mỗi giờ.",
+    "Code không chỉ là kỹ thuật, mà còn là nghệ thuật.",
+    "Game là sở thích, lập trình là đam mê.",
+    "Mỗi bug là một bài học.",
+    "Stay curious, keep building.",
+    "Cao Nhật Minh – luôn tiến về phía trước."
+  ];
+  var el = document.getElementById("cham-ngon");
+  if (!el) return;
+  var i = 0;
+  function tick(){
+    el.style.transition = "opacity .4s";
+    el.style.opacity = "0";
+    setTimeout(function(){
+      i = (i + 1) % quotes.length;
+      el.textContent = quotes[i];
+      el.style.opacity = "1";
+    }, 400);
+  }
+  el.textContent = quotes[0];
+  setInterval(tick, 4000);
+})();

@@ -887,3 +887,15 @@ playback timings (ms):
   pointer-events: none !important;
 }
 body.loading { overflow: auto !important; }
+
+/* Social original app icons */
+.social-app-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 2.5px solid #ffffff;
+  object-fit: cover;
+  box-shadow: 0 1px 4px rgba(0,0,0,.25);
+  background: #111;
+  flex-shrink: 0;
+}
